@@ -16,25 +16,23 @@ public class Sale {
         if (product != null) {
             products.add(product);
         } else {
-            System.out.println("El producte no pot ser nul.");
+            System.out.println("El producto no puede ser nulo.");
         }
     }
 
-    public void calculateTotal() throws VendaBuidaException {
-        if (products.isEmpty()) {
-            throw new VendaBuidaException("Per fer una venda primer has d’afegir productes");
-        }
-        totalPrice = 0.0;
-        for (Product product : products) {
-            totalPrice += product.getPrice();
-        }
-    }
+     public double calculateTotal() throws EmptySaleException {
+         if (products.isEmpty()) {
+             throw new EmptySaleException();
+         }
+         totalPrice = products.stream().mapToDouble(Product::getPrice).sum();
+         return totalPrice;
+     }
 
     public void showProducts() {
         if (products.isEmpty()) {
             System.out.println("No hay productos en la venta.");
         } else {
-            System.out.println("Productes en la venda:");
+            System.out.println("Productos en la venta:");
             for (Product product : products) {
                 System.out.println(product);
             }
@@ -44,5 +42,4 @@ public class Sale {
     public double getTotalPrice() {
         return totalPrice;
     }
-
 }
