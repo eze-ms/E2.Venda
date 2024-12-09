@@ -9,7 +9,6 @@ public class Sale {
 
     public Sale() {
         this.products = new ArrayList<>();
-        this.totalPrice = 0.0;
     }
 
     public void addProduct(Product product) {
